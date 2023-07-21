@@ -1,4 +1,4 @@
-# PTZ-jortan jt-8177
+# PTZ jortan jt-8177
 
 This custom component allows you to use the Pan and Tilt functions of Chinese cameras that do not fully comply with the ONVIF protocol.
 
