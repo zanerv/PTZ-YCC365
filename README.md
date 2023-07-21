@@ -7,7 +7,7 @@ You will have to enable the connection and set a password in the Yoosee app unde
 To use this custom component, I recommend integrating the video stream from your cameras with motionEye.
 **Please note that this component does not handle the video stream from the cameras, only the pan and tilt functions**
 
-### Tested Cameras
+### Tested Camera
 
   - [jortan jt-8177]
   
