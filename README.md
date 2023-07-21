@@ -1,62 +1,45 @@
-# PTZ-YCC365
+# PTZ-jortan jt-8177
 
-Este componente personalizado permite utilizar las funciones de Pan y Tilt de cámaras chinas que no cumplen completamente el protocolo ONVIF.
+This custom component allows you to use the Pan and Tilt functions of Chinese cameras that do not fully comply with the ONVIF protocol.
 
-Por algún motivo, la integración ONVIF de Home Assistant no funciona con mis cámaras que utilizan la aplicación YCC365 Plus para su configuración.
+You will have to enable the connection and set a password in the Yoosee app under camera -> Settings -> NVR connection -> Enable to connect
 
-He utilizado la aplicación ONVIF Device Manager y desde esta aplicación de PC puedo utilizar las funciones pan y tilt.
+To use this custom component, I recommend integrating the video stream from your cameras with motionEye.
+**Please note that this component does not handle the video stream from the cameras, only the pan and tilt functions**
 
-Al parecer, estas cámaras no cumplen completamente el protocolo ONVIF y la integración de Home Assistant de momento no puede integrarlas.
+### Tested Cameras
 
-He buscado una solución para poder utilizar en Home Assistant con la opcion pan y tilt.
-
-Utilizando la aplicación Wireshark he podido obtener información para utilizar estas cámaras.
-
-Para poder utlizar este compoente personalizado, recomiendo que integres la señal de tus camaras con motionEye. **Este componente no integra la señal de vídeo de sus cámaras, solo la función de pan y til.**
-
-### Cámaras testadas
-
-  - [YCC365 Plus IP Cámara 1080P 360°](https://es.aliexpress.com/item/4000055767917.html)
+  - [jortan jt-8177]
   
 ![](camara360.jpg)
   
-      - rtsp://IP:554	1280x720 h264	no audio
-      - rtsp://IP:554/0/av0	1280x720 h264	audio mono 8000Hz 16 bits
-      - rtsp://IP:554/0/av1	640x352 h264	audio mono 8000Hz 16 bits
+      - rtsp://IP:554/onvif1
+      - rtsp://IP:554/onvif2
 
-  - [YCC365 Plus IP Cámara de exterior°](https://es.aliexpress.com/item/4001201258483.html)
-  
-![](camaraExterior.jpg)
-  
-      - rtsp://IP:554	1280x720 h264	no audio
-      - rtsp://IP:554/0/av0	1280x720 h264	audio mono 8000Hz 16 bits
-      - rtsp://IP:554/0/av1	640x352 h264	audio mono 8000Hz 16 bits
+## Installation
+You only need to install the custom component in the usual way. Copy the "ptz_camera" folder from this project into your Home Assistant's /config/custom_components/ directory.
 
-## Instalación
-Solo necesita instalar el componente personalizado de forma habitual. Copia la carpeta otz_camera de este proyecto en su directorio /config/custom_components/ de su Home Assistant.
-
-## Configuración
-En su configuration.yaml:
+## Configuration
+In your configuration.yaml file:
 
 ```yaml
 ptz_camera:
 ```
-## Servicios
-Este componente personalizado crea varios servicios con dominio ptz_camera. Para obtener información sobre estos servicios puede utilizar “Herramientas para desarrolladores” > Servicios. Tendrá información detallada sobre los argumentos para llamar a cada servicio.
+## Services
+This custom component creates several services under the domain ptz_camera. To access information about these services, you can use "Developer Tools" > "Services" in Home Assistant. Here, you will find detailed information about the arguments required to call each service.
 
-## Entidad Cámara
-
-Puedes crear una cámara de la manera habitual. Yo te recomiendo usar el addon [motionEye](https://addons.community/) y crear una cámara mjpeg. Es la mejor configuración que he encontrado con un delay bajo. Un ejemplo de configuración seria:
+## Camera Entity
+You can create a camera in the usual way. I recommend using the [motionEye](https://addons.community/) addon to create an MJPEG camera. It's the best configuration I have found with low delay. An example of the configuration would be:
 
 ```yaml
 camera:
   - platform: mjpeg
-    name: Salón
+    name: Salon
     mjpeg_url: http://192.168.1.111:8083
 ```
 
-## Tarjeta con controles
-Una forma fácil de utilizar los controles de pan y tilt es superponer los controles sobre la imagen de una cámara. Sustituye la direccion IP de este ejemplo por la dirección IP de tu cámara.
+## Card with Controls
+An easy way to use the pan and tilt controls is to overlay them on the image of a camera. Replace the IP address in this example with the IP address of your camera.
 
 ```yaml
 type: picture-elements
