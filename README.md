@@ -11,7 +11,7 @@ To use this custom component, I recommend integrating the video stream from your
 
   - [jortan jt-8177]
   
-![](camara360.jpg)
+![](camara.jpg)
   
       - rtsp://IP:554/onvif1
       - rtsp://IP:554/onvif2
