@@ -16,6 +16,13 @@ To use this custom component, I recommend integrating the video stream from your
       - rtsp://IP:554/onvif1
       - rtsp://IP:554/onvif2
 
+### [OPTIONAL] How to get the stream uri from ONVIF cameras
+
+  #### this will get the profile token that will be needed for the next step
+      - curl -X POST -H "Content-Type: application/soap+xml" -d @GetProfile.xml http://192.168.1.244:5000/onvif/device_service 
+  #### Update GetStreamUri.xml with your ProfileToken and post the request to get the stream uri
+      - curl -X POST -H "Content-Type: application/soap+xml" -d @GetStreamUri.xml http://192.168.1.244:5000/onvif/media_service
+      
 ## Installation
 You only need to install the custom component in the usual way. Copy the "ptz_camera" folder from this project into your Home Assistant's /config/custom_components/ directory.
 
